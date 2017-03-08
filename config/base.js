@@ -1,5 +1,5 @@
 
-const { join } = require('path')
+const { join, resolve } = require('path')
 const { loaders, plugins } = require('./webpack')
 const root = process.cwd()
 const front = join(root, 'front')
@@ -17,8 +17,13 @@ module.exports = {
   resolve: {
     extensions: [ '.ts', '.tsx', '.js', '.json', '.jsx' ],
     modules: [
-      'node_modules',
-      front
+      front,
+      join(root, 'node_modules')
+    ]
+  },
+  resolveLoader: {
+    modules: [
+      join(__dirname, '../node_modules')
     ]
   },
   module: {

@@ -6,17 +6,23 @@ const { join } = require('path')
 const root = process.cwd()
 const front = join(root, 'front')
 
+const mod = name => join(__dirname, '../node_modules/', name)
+
 exports.loaders = {
 
   babel: {
     test: /\.jsx?$/,
     loader: 'babel-loader',
     query: {
-      presets: [ 'es2015', 'stage-0', 'react' ],
-      plugins: [
-        'transform-decorators-legacy',
-        [ 'import', { libraryName: 'antd', style: true }],
+      presets: [
+        mod('babel-preset-es2015'),
+        mod('babel-preset-stage-0'),
+        mod('babel-preset-react')
       ],
+      plugins: [
+        mod('babel-plugin-transform-decorators-legacy'),
+        [ mod('babel-plugin-import'), { libraryName: 'antd', style: true }],
+      ]
     },
     include: [ front ],
     exclude: [ /node_modules/ ],
@@ -26,7 +32,7 @@ exports.loaders = {
     test: /\.tsx?$/,
     loader: 'awesome-typescript-loader',
     query: {
-      configFileName: '../tsconfig.json'
+      configFileName: './tsconfig.json'
     },
     include: [ front ],
     exclude: [ /node_modules/ ],
@@ -34,7 +40,7 @@ exports.loaders = {
 
   css: {
     test: /\.css$/,
-    loader: ExtractTextPlugin.extract([ 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]__[hash:8]', 'postcss-loader' ])
+    loader: ExtractTextPlugin.extract([ 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]__[hash:8]&camelCase', 'postcss-loader' ])
   },
 
   less: (vars = {}) => {
