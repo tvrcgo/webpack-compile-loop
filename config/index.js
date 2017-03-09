@@ -8,8 +8,8 @@ module.exports = argv => {
   // cmd
   const cmd = argv._[0]
 
-  if (cmd === 'dll') {
-    return require('./dll')
+  if (cmd === 'lib') {
+    return require('./lib')
   }
 
   if (cmd === 'dev') {

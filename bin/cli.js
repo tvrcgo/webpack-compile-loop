@@ -5,7 +5,7 @@ const argv = require('minimist')(process.argv.slice(2))
 
 const cmd = argv._[0]
 
-if (!['dll', 'dev', 'prod'].includes(cmd)) {
+if (!['lib', 'dev', 'prod'].includes(cmd)) {
   console.warn(cmd, ': command not support.')
 } else {
 
@@ -40,11 +40,12 @@ if (!['dll', 'dev', 'prod'].includes(cmd)) {
         poll: true
       }, handler)
       break
-    case 'dll':
+    case 'lib':
     case 'prod':
       compiler.run(handler)
       break
     default:
+      console.warn(cmd, ': command not support.')
       break
   }
 }
