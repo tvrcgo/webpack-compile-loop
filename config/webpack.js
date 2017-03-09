@@ -1,7 +1,6 @@
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const AssetsPlugin = require('assets-webpack-plugin')
-const { TsConfigPathsPlugin } = require('awesome-typescript-loader')
 
 const { join } = require('path')
 const root = process.cwd()
@@ -34,6 +33,34 @@ exports.loaders = {
   typescript: {
     test: /\.tsx?$/,
     loader: 'awesome-typescript-loader',
+    query: {
+      // loader options
+      useBabel: true,
+      babelOptions: {
+        presets: ["es2015", "stage-0", "react"],
+        plugins: [
+          [ "import", { "libraryName": "antd", "style": true }]
+        ],
+        filename: join(__dirname, '../package.json')
+      },
+      useCache: false,
+      emitRequireType: false,
+      // comiler options
+      target : "es6",
+      moduleResolution: "node",
+      jsx : "react",
+      experimentalDecorators: true,
+      strictNullChecks: true,
+      allowSyntheticDefaultImports: true,
+      noImplicitAny: false,
+      removeComments: true,
+      sourceMap: false,
+      baseUrl: "front",
+      typeRoots: [
+        join(__dirname, '../node_modules/@types'),
+        join(root, 'node_modules/@types')
+      ]
+    },
     include: [ front ],
     exclude: [ /node_modules/ ],
   },
@@ -65,35 +92,6 @@ exports.plugins = {
       postcss: [
         require('postcss-nested')
       ]
-    }
-  }),
-
-  TypescriptOptions: new TsConfigPathsPlugin({
-    tsconfig: {
-      compilerOptions: {
-        useBabel: true,
-        babelOptions: {
-          presets: ["es2015", "stage-0", "react"],
-          plugins: [
-            [ "import", { "libraryName": "antd", "style": true }]
-          ],
-          filename: join(__dirname, '../package.json')
-        },
-        useCache: false,
-        emitRequireType: false
-      },
-      awesomeTypescriptLoaderOptions: {
-        target : "es6",
-        moduleResolution: "node",
-        jsx : "react",
-        experimentalDecorators: true,
-        strictNullChecks: true,
-        allowSyntheticDefaultImports: true,
-        noImplicitAny: false,
-        removeComments: true,
-        sourceMap: false,
-        baseUrl: front
-      }
     }
   }),
 

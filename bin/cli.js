@@ -19,10 +19,14 @@ if (!['dll', 'dev', 'prod'].includes(cmd)) {
   const handler = (err, stats) => {
     const json = stats.toJson()
     if (err || stats.hasErrors()) {
-      return console.error(err || json.errors)
+      return json.errors.map(e => {
+        console.error(e)
+      })
     }
     if (stats.hasWarnings()) {
-      return console.warn(json.warnings)
+      return json.warnings.map(warn => {
+        console.warn(warn)
+      })
     }
     console.log(stats.toString({
       chunks: false,
