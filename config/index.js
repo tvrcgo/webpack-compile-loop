@@ -32,9 +32,13 @@ module.exports = argv => {
     ])
   }
 
-  // parser
-  const parser = ['ts', 'typescript'].includes(argv.parser) ? loaders.typescript : loaders.babel
-  config.module.loaders.push(parser)
+  // parser: typescript or babel
+  if (['ts', 'typescript'].includes(argv.parser)) {
+    config.module.loaders.push(loaders.typescript)
+    config.plugins.push(plugins.TypescriptOptions)
+  } else {
+    config.module.loaders.push(loaders.babel)
+  }
 
   return config
 }

@@ -1,12 +1,14 @@
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const AssetsPlugin = require('assets-webpack-plugin')
+const { TsConfigPathsPlugin } = require('awesome-typescript-loader')
 
 const { join } = require('path')
 const root = process.cwd()
 const front = join(root, 'front')
 
-const mod = name => join(__dirname, '../node_modules/', name)
+// fix loaderUtils.parseQuery() warning. Remove GTD.
+process.noDeprecation = true
 
 exports.loaders = {
 
@@ -15,14 +17,15 @@ exports.loaders = {
     loader: 'babel-loader',
     query: {
       presets: [
-        mod('babel-preset-es2015'),
-        mod('babel-preset-stage-0'),
-        mod('babel-preset-react')
+        'es2015',
+        'stage-0',
+        'react'
       ],
       plugins: [
-        mod('babel-plugin-transform-decorators-legacy'),
-        [ mod('babel-plugin-import'), { libraryName: 'antd', style: true }],
-      ]
+        'transform-decorators-legacy',
+        [ 'import', { libraryName: 'antd', style: true }],
+      ],
+      filename: join(__dirname, '../package.json')
     },
     include: [ front ],
     exclude: [ /node_modules/ ],
@@ -31,9 +34,6 @@ exports.loaders = {
   typescript: {
     test: /\.tsx?$/,
     loader: 'awesome-typescript-loader',
-    query: {
-      configFileName: './tsconfig.json'
-    },
     include: [ front ],
     exclude: [ /node_modules/ ],
   },
@@ -65,6 +65,35 @@ exports.plugins = {
       postcss: [
         require('postcss-nested')
       ]
+    }
+  }),
+
+  TypescriptOptions: new TsConfigPathsPlugin({
+    tsconfig: {
+      compilerOptions: {
+        useBabel: true,
+        babelOptions: {
+          presets: ["es2015", "stage-0", "react"],
+          plugins: [
+            [ "import", { "libraryName": "antd", "style": true }]
+          ],
+          filename: join(__dirname, '../package.json')
+        },
+        useCache: false,
+        emitRequireType: false
+      },
+      awesomeTypescriptLoaderOptions: {
+        target : "es6",
+        moduleResolution: "node",
+        jsx : "react",
+        experimentalDecorators: true,
+        strictNullChecks: true,
+        allowSyntheticDefaultImports: true,
+        noImplicitAny: false,
+        removeComments: true,
+        sourceMap: false,
+        baseUrl: front
+      }
     }
   }),
 
