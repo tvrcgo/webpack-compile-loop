@@ -1,17 +1,17 @@
 {
-  "name": "webpack-build-config",
+  "name": "webpack-compile-loop",
   "version": "0.1.0",
-  "description": "webpack build config",
+  "description": "webpack compile loop",
   "main": "index.js",
   "bin": {
-    "ak": "./bin/cli.js"
+    "loop": "./bin/cli.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tvrcgo/webpack-build-config.git"
+    "url": "git+https://github.com/tvrcgo/webpack-compile-loop.git"
   },
   "keywords": [
     "webpack",
@@ -20,9 +20,9 @@
   "author": "tvrcgo",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tvrcgo/webpack-build-config/issues"
+    "url": "https://github.com/tvrcgo/webpack-compile-loop/issues"
   },
-  "homepage": "https://github.com/tvrcgo/webpack-build-config#readme",
+  "homepage": "https://github.com/tvrcgo/webpack-compile-loop#readme",
   "dependencies": {
     "@types/node": "^7.0.7",
     "@types/react": "^15.0.14",

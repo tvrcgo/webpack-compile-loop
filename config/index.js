@@ -32,8 +32,8 @@ module.exports = argv => {
     ])
   }
 
-  // parser: typescript or babel
-  if (['ts', 'typescript'].includes(argv.parser)) {
+  // compiler: typescript or babel
+  if (['ts', 'typescript'].includes(argv.compiler)) {
     config.module.loaders.push(loaders.typescript)
   } else {
     config.module.loaders.push(loaders.babel)

@@ -1,6 +1,6 @@
-# webpack-build-config
+# webpack-compile-loop
 
-Ready to start developing ?
+Ready to start ?
 
 - Nothing else executing following commands.
 - No complicated devDependencies which has been integrated.
@@ -9,24 +9,24 @@ Ready to start developing ?
 
 ```shell
 # build library
-$ ak lib
+$ loop lib
 
 # build dev assets
-$ ak dev
+$ loop dev
 
 # build prod assets
-$ ak prod
+$ loop prod
 ```
 
 ### TypeScript
 
-Compile by babel in default.
+Compile by Babel in default.
 
-Add `--parser typescript` parameter to use typescript compiler.
+Add `--compiler typescript` parameter to use typescript compiler.
 
 ```shell
-$ ak dev --parser typescript
-$ ak prod --parser ts
+$ loop dev --compiler typescript
+$ loop prod --compiler ts
 ```
 
 ## Compose
