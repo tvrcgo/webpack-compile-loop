@@ -29,7 +29,7 @@ module.exports = {
   module: {
     loaders: [
       loaders.css,
-      loaders.less(pkg.config.antd.theme)
+      loaders.less((pkg.config && pkg.config.less) || {})
     ]
   },
   plugins: [
