@@ -4,12 +4,9 @@ const { loaders, plugins } = require('./webpack')
 const root = process.cwd()
 const front = join(root, 'front')
 const pkg = require(join(root, 'package.json'))
-const entry = (name) => join(front, 'view', name, 'index')
 
 module.exports = {
-  entry: {
-    index: [ entry('index') ],
-  },
+  entry: {},
   output: {
     path: 'app/public',
     publicPath: 'app/public'
