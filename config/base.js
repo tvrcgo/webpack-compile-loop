@@ -31,7 +31,6 @@ module.exports = {
   },
   plugins: [
     plugins.PostcssOptions,
-    plugins.DllReference(),
     plugins.Assets('app_assets.json')
   ]
 }

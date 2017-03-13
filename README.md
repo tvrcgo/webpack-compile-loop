@@ -1,9 +1,7 @@
 # webpack-compile-loop
 
-Ready to start ?
-
-- Nothing else executing following commands.
-- No complicated devDependencies which has been integrated.
+- Nothing else except following commands.
+- No complicated devDependencies.
 
 ## Start
 

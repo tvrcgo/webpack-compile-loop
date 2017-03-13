@@ -15,6 +15,9 @@ module.exports = argv => {
     return require('./lib')
   }
 
+  // Use DllReference plugin
+  config.plugins.push(plugins.DllReference())
+
   if (cmd === 'dev') {
     // bundle file name
     config.output.filename = 'bundle/[name].js'
