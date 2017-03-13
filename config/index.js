@@ -1,61 +1,61 @@
 const { join } = require('path')
 const { loaders, plugins } = require('./webpack')
-const base = require('./base')
-const config = Object.assign({}, base)
 const ls = require('../lib/ls')
 const root = process.cwd()
 const entryRoot = join(root, 'front/view')
 
-module.exports = argv => {
+class Manager {
 
-  // cmd
-  const cmd = argv._[0]
+  constructor(cmd, argv) {
 
-  if (cmd === 'lib') {
-    return require('./lib')
-  }
+    if (cmd === 'lib') {
+      this.config = require('./lib')
+      return
+    }
 
-  // Use DllReference plugin
-  config.plugins.push(plugins.DllReference())
+    this.config = require('./base')
 
-  if (cmd === 'dev') {
-    // bundle file name
-    config.output.filename = 'bundle/[name].js'
-    // plugins
-    config.plugins = config.plugins.concat([
-      plugins.ExtractCSS('[name].css')
-    ])
-  }
+    // entry
+    const entries = ls(entryRoot)
+    entries.map(name => {
+      const entrypoint = join(entryRoot, name)
+      this.config.entry[name] = [].concat(entrypoint)
+    })
+    if (!Object.keys(entries).length) {
+      console.error(entryRoot, 'No entry founded.')
+      process.exit(1)
+    }
 
-  if (cmd === 'prod') {
-    // bundle file name
-    config.output.filename = 'bundle/[name].[hash:8].js'
-    // plugins
-    config.plugins = config.plugins.concat([
-      plugins.DefineProdEnv,
-      plugins.ExtractCSS('[name].[hash:8].css'),
-      plugins.UglifyJS,
-    ])
-  }
-
-  // entry
-  const entries = ls(entryRoot)
-  entries.map(name => {
-    const entrypoint = join(entryRoot, name)
-    config.entry[name] = [].concat(entrypoint)
-  })
-  if (!Object.keys(entries).length) {
-    return {
-      error: new Error('No entry founded.')
+    // compiler: typescript or babel
+    if (['ts', 'typescript'].includes(argv.compiler)) {
+      this.loader(loaders.typescript)
+    } else {
+      this.loader(loaders.babel)
     }
   }
 
-  // compiler: typescript or babel
-  if (['ts', 'typescript'].includes(argv.compiler)) {
-    config.module.loaders.push(loaders.typescript)
-  } else {
-    config.module.loaders.push(loaders.babel)
+  plugin(plugins) {
+    if (!this.config.plugins) {
+      this.config.plugins = []
+    }
+    this.config.plugins = this.config.plugins.concat(plugins)
+    return this
   }
 
-  return config
+  loader(loaders) {
+    if (!this.config.module) {
+      this.config.module = {}
+    }
+    if (!this.config.module.loaders) {
+      this.config.module.loaders = []
+    }
+    this.config.module.loaders = this.config.module.loaders.concat(loaders)
+    return this
+  }
+}
+
+module.exports = {
+  Manager,
+  plugins,
+  loaders
 }

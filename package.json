@@ -4,7 +4,7 @@
   "description": "webpack compile loop",
   "main": "index.js",
   "bin": {
-    "loop": "./bin/cli.js"
+    "loop": "./bin/loop.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
