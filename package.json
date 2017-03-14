@@ -1,6 +1,6 @@
 {
   "name": "webpack-compile-loop",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "webpack compile loop",
   "main": "index.js",
   "bin": {
