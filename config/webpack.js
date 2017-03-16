@@ -95,6 +95,7 @@ exports.plugins = {
   PostcssOptions: new webpack.LoaderOptionsPlugin({
     test: /\.css$/,
     options: {
+      context: front,
       postcss: [
         require('postcss-nested')
       ]
