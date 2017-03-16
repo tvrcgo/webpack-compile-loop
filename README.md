@@ -30,9 +30,8 @@ $ loop prod --compiler ts
 ## Compose
 
 - Webpack
-  - css-loader
-  - less-loader
-  - postcss-loader
+  - css-loader, less-loader, postcss-loader
+  - url-loader, file-loader
   - assets-webpack-plugin
   - extract-text-webpack-plugin
 - Babel

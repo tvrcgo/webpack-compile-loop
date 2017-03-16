@@ -67,7 +67,7 @@ exports.loaders = {
 
   css: {
     test: /\.css$/,
-    loader: ExtractTextPlugin.extract([ 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]__[hash:8]&camelCase', 'postcss-loader' ])
+    loader: ExtractTextPlugin.extract([ 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:8]&camelCase', 'postcss-loader' ])
   },
 
   less: (vars = {}) => {
@@ -75,6 +75,12 @@ exports.loaders = {
       test: /\.less$/,
       loader: ExtractTextPlugin.extract([ 'css-loader', `less-loader?{modifyVars:${JSON.stringify(vars)}}` ])
     }
+  },
+
+  image: {
+    test: /\.(jpe?g|png|gif|svg)$/,
+    exclude: /node_modules/,
+    loader: 'url-loader?name=image/[hash:12].[ext]&limit=2048'
   }
 }
 

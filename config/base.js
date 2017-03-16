@@ -9,7 +9,7 @@ module.exports = {
   entry: {},
   output: {
     path: 'app/public',
-    publicPath: 'app/public'
+    publicPath: '/public/'
   },
   resolve: {
     extensions: [ '.ts', '.tsx', '.js', '.json', '.jsx' ],
@@ -25,6 +25,7 @@ module.exports = {
   },
   module: {
     loaders: [
+      loaders.image,
       loaders.css,
       loaders.less((pkg.config && pkg.config.less) || {})
     ]
