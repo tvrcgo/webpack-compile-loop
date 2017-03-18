@@ -20,7 +20,8 @@ module.exports = {
   },
   resolveLoader: {
     modules: [
-      join(__dirname, '../node_modules')
+      join(__dirname, '../node_modules'),
+      'node_modules'
     ]
   },
   module: {
