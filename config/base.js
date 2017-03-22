@@ -8,7 +8,7 @@ const pkg = require(join(root, 'package.json'))
 module.exports = {
   entry: {},
   output: {
-    path: 'app/public',
+    path: join(root, 'app/public'),
     publicPath: '/public/'
   },
   resolve: {
