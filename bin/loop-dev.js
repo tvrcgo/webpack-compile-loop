@@ -1,22 +1,23 @@
 #!/usr/bin/env node
 
 const compile = require('../lib/compile')
-const { Manager, plugins } = require('../config')
+const { plugins } = require('../config/webpack')
+const base = require('../config/web-base')
 
 module.exports = (cmd, argv) => {
 
-  const man = new Manager(cmd, argv)
+  const config = base(argv)
 
   // bundle file name
-  man.config.output.filename = 'bundle/[name].js'
+  config.output.filename = 'bundle/[name].js'
 
   // plugins
-  man.plugin([
+  config.plugins.push(
     plugins.ExtractCSS('[name].css')
-  ])
+  )
 
   // compile
-  compile(man.config).watch({
+  compile(config).watch({
     poll: true
   })
 

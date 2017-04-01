@@ -6,8 +6,8 @@
 ## Start
 
 ```shell
-# build library
-$ loop lib
+# build dll library
+$ loop dll
 
 # build dev assets
 $ loop dev
