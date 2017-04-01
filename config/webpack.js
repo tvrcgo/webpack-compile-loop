@@ -138,3 +138,31 @@ exports.plugins = {
   }
 
 }
+
+exports.externals = {
+  'react': {
+    root: 'React',
+    commonjs: 'react',
+    commonjs2: 'react',
+    amd: 'react'
+  },
+  'react-dom': {
+    root: 'ReactDOM',
+    commonjs: 'react-dom',
+    commonjs2: 'react-dom',
+    amd: 'react-dom'
+  },
+  'react-router': {
+    root: 'ReactRouter',
+    commonjs: 'react-router',
+    commonjs2: 'react-router',
+    amd: 'react-router'
+  },
+  'mobx': 'mobx',
+  'mobx-react': {
+    root: 'mobxReact',
+    commonjs: 'mobx-react',
+    commonjs2: 'mobx-react',
+    amd: 'mobx-react'
+  },
+}
