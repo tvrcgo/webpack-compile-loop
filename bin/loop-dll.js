@@ -2,7 +2,7 @@
 
 const chalk = require('chalk')
 const compile = require('../lib/compile')
-const config = require('../config/dll')
+const config = require('../config/web-dll')
 
 module.exports = (cmd, argv) => {
 
