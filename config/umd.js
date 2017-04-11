@@ -5,7 +5,7 @@ const pkg = require(join(root, 'package.json'))
 
 module.exports = ({ name = '' }) => {
 
-  const deps = pkg.dependencies || {}
+  const deps = pkg.peerDependencies || {}
   const exts = {}
   Object.keys(deps).filter(lib => !!externals[lib]).map(lib => {
     Object.assign(exts, {
