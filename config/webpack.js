@@ -4,7 +4,7 @@ const AssetsPlugin = require('assets-webpack-plugin')
 
 const { join } = require('path')
 const root = process.cwd()
-const front = join(root, 'front')
+const web = join(root, 'web')
 
 // fix loaderUtils.parseQuery() warning. Remove GTD.
 process.noDeprecation = true
@@ -26,7 +26,7 @@ exports.loaders = {
       ],
       filename: join(__dirname, '../package.json')
     },
-    include: [ front ],
+    include: [ web ],
     exclude: [ /node_modules/ ],
   },
 
@@ -55,13 +55,13 @@ exports.loaders = {
       noImplicitAny: false,
       removeComments: true,
       sourceMap: false,
-      baseUrl: "front",
+      baseUrl: "web",
       typeRoots: [
         join(__dirname, '../node_modules/@types'),
         join(root, 'node_modules/@types')
       ]
     },
-    include: [ front ],
+    include: [ web ],
     exclude: [ /node_modules/ ],
   },
 
@@ -95,7 +95,7 @@ exports.plugins = {
   PostcssOptions: new webpack.LoaderOptionsPlugin({
     test: /\.css$/,
     options: {
-      context: front,
+      context: web,
       postcss: [
         require('postcss-nested')
       ]

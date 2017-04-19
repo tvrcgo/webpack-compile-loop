@@ -4,8 +4,8 @@ const { loaders, plugins } = require('./webpack')
 const ls = require('../lib/ls')
 
 const root = process.cwd()
-const front = join(root, 'front')
-const entryRoot = join(root, 'front/view')
+const web = join(root, 'web')
+const entryRoot = join(root, 'web/view')
 const pkg = require(join(root, 'package.json'))
 
 module.exports = (argv) => {
@@ -20,7 +20,7 @@ module.exports = (argv) => {
     resolve: {
       extensions: [ '.ts', '.tsx', '.js', '.json', '.jsx' ],
       modules: [
-        front,
+        web,
         join(root, 'node_modules')
       ]
     },
