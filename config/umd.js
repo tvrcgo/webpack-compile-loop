@@ -26,6 +26,12 @@ module.exports = ({ name = '' }) => {
     resolve: {
       extensions: [ '.js', '.jsx' ]
     },
+    resolveLoader: {
+      modules: [
+        join(__dirname, '../node_modules'),
+        'node_modules'
+      ]
+    },
     module: {
       loaders: [
         loaders.babel
