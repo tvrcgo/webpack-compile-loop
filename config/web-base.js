@@ -21,7 +21,8 @@ module.exports = (argv) => {
       extensions: [ '.ts', '.tsx', '.js', '.json', '.jsx' ],
       modules: [
         web,
-        join(root, 'node_modules')
+        join(root, 'node_modules'),
+        join(__dirname, '../node_modules')
       ]
     },
     resolveLoader: {

@@ -17,6 +17,11 @@ module.exports = (argv) => {
       filename: 'bundle/[name].[hash:8].js',
       library: '[name]_[hash]',
     },
+    resolve: {
+      modules: [
+        join(__dirname, '../node_modules')
+      ]
+    },
     plugins: [
       plugins.DefineProdEnv,
       plugins.Dll,
