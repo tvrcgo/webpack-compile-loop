@@ -24,6 +24,7 @@ module.exports = (argv) => {
     },
     plugins: [
       plugins.DefineProdEnv,
+      plugins.GlobalProvider,
       plugins.Dll,
       plugins.UglifyJS,
       plugins.Assets('lib_assets.json')

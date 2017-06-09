@@ -40,6 +40,7 @@ module.exports = (argv) => {
     },
     plugins: [
       plugins.PostcssOptions,
+      plugins.GlobalProvider,
       plugins.DllReference(),
       plugins.Assets('app_assets.json')
     ]

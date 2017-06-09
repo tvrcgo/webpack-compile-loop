@@ -92,6 +92,10 @@ exports.plugins = {
     },
   }),
 
+  GlobalProvider: new webpack.ProvidePlugin({
+    "React": "react",
+  }),
+
   PostcssOptions: new webpack.LoaderOptionsPlugin({
     test: /\.css$/,
     options: {
