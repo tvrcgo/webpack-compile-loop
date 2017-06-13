@@ -22,6 +22,12 @@ module.exports = (argv) => {
         join(__dirname, '../node_modules')
       ]
     },
+    resolveLoader: {
+      modules: [
+        join(__dirname, '../node_modules'),
+        'node_modules'
+      ]
+    },
     plugins: [
       plugins.DefineProdEnv,
       plugins.GlobalProvider,
