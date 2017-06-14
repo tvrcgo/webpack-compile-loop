@@ -1,9 +1,8 @@
-#!/usr/bin/env node
 const chalk = require('chalk')
 const compile = require('../lib/compile')
 const config = require('../config/umd')
 
-module.exports = (cmd, argv) => {
+module.exports = argv => {
 
   const name = argv.name
   if (!name) {
@@ -16,4 +15,5 @@ module.exports = (cmd, argv) => {
   compile(config({ name })).watch({
     poll: true
   })
+  
 }

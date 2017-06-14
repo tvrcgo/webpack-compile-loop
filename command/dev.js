@@ -1,10 +1,8 @@
-#!/usr/bin/env node
-
 const compile = require('../lib/compile')
 const { plugins } = require('../config/webpack')
 const base = require('../config/web-base')
 
-module.exports = (cmd, argv) => {
+module.exports = argv => {
 
   const config = base(argv)
 
@@ -20,5 +18,4 @@ module.exports = (cmd, argv) => {
   compile(config).watch({
     poll: true
   })
-
 }
