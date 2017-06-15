@@ -2,7 +2,7 @@ const chalk = require('chalk')
 const compile = require('../lib/compile')
 const config = require('../config/umd')
 
-module.exports = argv => {
+module.exports = function* (argv, cmd) {
 
   const name = argv.name
   if (!name) {

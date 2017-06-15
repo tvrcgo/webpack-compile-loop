@@ -2,7 +2,7 @@ const compile = require('../lib/compile')
 const { plugins } = require('../config/webpack')
 const base = require('../config/web-base')
 
-module.exports = argv => {
+module.exports = function* (argv, cmd) {
 
   const config = base(argv)
 
