@@ -1,9 +1,12 @@
 # webpack-compile-loop
 
-- Nothing else except following commands.
-- No complicated devDependencies.
+Integrated package for front-end development.
 
-## Start
+```shell
+npm install --save-dev webpack-compile-loop
+```
+
+## Usage
 
 ```shell
 # build dll library
@@ -14,6 +17,12 @@ $ loop dev
 
 # build prod assets
 $ loop prod
+
+# run unit test
+$ loop test
+
+# build umd module
+$ loop umd --name yourModule
 ```
 
 ### TypeScript
@@ -41,3 +50,5 @@ $ loop prod --compiler ts
 - TypeScript
   - awesome-typescript-loader
   - @types of node, react, react-router, react-dom
+- Test
+  - mocha, power-assert
