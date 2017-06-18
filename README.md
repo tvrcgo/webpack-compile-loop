@@ -23,6 +23,9 @@ $ loop test
 
 # build umd module
 $ loop umd --name yourModule
+
+# eslint
+$ loop lint <dir-or-file>
 ```
 
 ### TypeScript
@@ -52,3 +55,7 @@ $ loop prod --compiler ts
   - @types of node, react, react-router, react-dom
 - Test
   - mocha, power-assert
+- ESLint
+  - babel-eslint
+  - config: standard
+  - plugin: import, node, promise, react, standard
