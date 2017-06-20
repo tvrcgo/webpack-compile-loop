@@ -19,6 +19,7 @@ module.exports = (argv) => {
     },
     resolve: {
       modules: [
+        join(root, 'node_modules'),
         join(__dirname, '../node_modules')
       ]
     },
