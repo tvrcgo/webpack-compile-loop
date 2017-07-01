@@ -25,6 +25,7 @@ module.exports = (argv) => {
     },
     resolveLoader: {
       modules: [
+        join(root, 'node_modules'),
         join(__dirname, '../node_modules'),
         'node_modules'
       ]
