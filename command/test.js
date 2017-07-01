@@ -7,6 +7,8 @@ module.exports = function* (argv, cmd) {
   const args = [
     '--require',
     _module('intelli-espower-loader'),
+    '--require',
+    _module('co-mocha'),
     'test/**/*.test.js'
   ]
   yield cmd.fork(mocha, args)
