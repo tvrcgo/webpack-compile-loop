@@ -6,26 +6,24 @@ Integrated package for front-end development.
 npm install --save-dev webpack-compile-loop
 ```
 
+- `dll` build dll bundle
+- `dev` build dev assets
+- `prod` build prod assets
+- `umd` build umd module
+- `lint` eslint
+- `test` run unit test
+- `cov` run coverage test
+
 ## Usage
 
 ```shell
-# build dll library
 $ loop dll
-
-# build dev assets
 $ loop dev
-
-# build prod assets
 $ loop prod
-
-# run unit test
-$ loop test
-
-# build umd module
-$ loop umd --name yourModule
-
-# eslint
+$ loop umd --name yourModuleName
 $ loop lint <dir-or-file>
+$ loop test
+$ loop cov
 ```
 
 ### TypeScript
@@ -39,7 +37,7 @@ $ loop dev --compiler typescript
 $ loop prod --compiler ts
 ```
 
-## Compose
+## Modules
 
 - Webpack
   - css-loader, less-loader, postcss-loader
@@ -54,7 +52,8 @@ $ loop prod --compiler ts
   - awesome-typescript-loader
   - @types of node, react, react-router, react-dom
 - Test
-  - mocha, power-assert
+  - unit: mocha, co-mocha, power-assert
+  - coverage: nyc
 - ESLint
   - babel-eslint
   - config: standard
