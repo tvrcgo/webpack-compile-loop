@@ -6,7 +6,7 @@ const root = process.cwd()
 module.exports = (argv) => {
 
   // library list
-  const lib = argv.lib || [ 'react', 'react-dom', 'react-router', 'mobx', 'mobx-react' ]
+  const lib = argv.lib ? argv.lib.split(',') : [ 'react', 'react-dom', 'react-router', 'mobx', 'mobx-react' ]
 
   return {
     entry: {
