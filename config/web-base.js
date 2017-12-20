@@ -79,6 +79,7 @@ module.exports = (argv) => {
             noImplicitAny: false,
             removeComments: true,
             sourceMap: false,
+            baseUrl: src,
             typeRoots: [
               join(__dirname, '../node_modules/@types'),
               join(root, '/node_modules/@types')
@@ -98,9 +99,15 @@ module.exports = (argv) => {
         {
           test: /\.less$/,
           use: ExtractTextPlugin.extract({
+            fallback: "style-loader",
             use: [
               "css-loader",
-              "less-loader"
+              {
+                loader: "less-loader",
+                options: {
+                  modifyVars: pkg.theme || {}
+                }
+              }
             ]
           })
         },
