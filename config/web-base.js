@@ -46,7 +46,8 @@ module.exports = (argv) => {
               presets: [ 'es2015', 'stage-0', 'react' ],
               plugins: [ 'transform-decorators-legacy' ],
               cacheDirectory: true,
-              extends: join(root, '.babelrc')
+              extends: join(root, '.babelrc'),
+              filename: join(__dirname, '../package.json')
             }
           },
           include: [ src ],

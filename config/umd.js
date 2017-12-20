@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const { join } = require('path')
 const root = process.cwd()
 const pkg = require(join(root, 'package.json'))
@@ -30,7 +31,8 @@ module.exports = ({ name = '' }) => {
             options: {
               presets: [ 'es2015', 'stage-0', 'react' ],
               plugins: [ 'transform-decorators-legacy' ],
-              cacheDirectory: true
+              cacheDirectory: true,
+              filename: join(__dirname, '../package.json')
             }
           },
           include: [ root ],
