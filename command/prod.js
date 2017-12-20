@@ -1,5 +1,5 @@
+const webpack = require('webpack')
 const compile = require('../lib/compile')
-const { plugins } = require('../config/webpack')
 const base = require('../config/web-base')
 
 module.exports = function* (argv, cmd) {
@@ -10,13 +10,25 @@ module.exports = function* (argv, cmd) {
   config.output.filename = 'bundle/[name].[hash:8].js'
 
   // plugins
-  config.plugins = config.plugins.concat([
-    plugins.DefineProdEnv,
-    plugins.ExtractCSS('[name].[hash:8].css'),
-    plugins.UglifyJS,
-  ])
+  config.plugins.push(
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production'),
+      }
+    }),
+    new ExtractTextPlugin(`style/[name].[hash:8].css`),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+      },
+      minimize: true,
+      output: {
+        comments: false,
+      },
+    })
+  )
 
   // compile
   compile(config).run()
-  
+
 }

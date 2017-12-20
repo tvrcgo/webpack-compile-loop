@@ -4,7 +4,6 @@ const config = require('../config/web-dll')
 
 module.exports = function* (argv, cmd) {
 
-  console.log(chalk.cyan('Loop dll library'))
   compile(config(argv)).run()
 
 }

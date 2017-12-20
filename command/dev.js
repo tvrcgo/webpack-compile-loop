@@ -1,5 +1,6 @@
+const webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const compile = require('../lib/compile')
-const { plugins } = require('../config/webpack')
 const base = require('../config/web-base')
 
 module.exports = function* (argv, cmd) {
@@ -11,7 +12,12 @@ module.exports = function* (argv, cmd) {
 
   // plugins
   config.plugins.push(
-    plugins.ExtractCSS('[name].css')
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('development'),
+      }
+    }),
+    new ExtractTextPlugin(`style/[name].css`)
   )
 
   // compile

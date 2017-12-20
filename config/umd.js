@@ -1,19 +1,8 @@
-const { loaders, plugins, externals } = require('./webpack')
 const { join } = require('path')
 const root = process.cwd()
 const pkg = require(join(root, 'package.json'))
 
 module.exports = ({ name = '' }) => {
-
-  const deps = pkg.peerDependencies || {}
-  const exts = {}
-  Object.keys(deps).filter(lib => !!externals[lib]).map(lib => {
-    Object.assign(exts, {
-      [lib]: externals[lib]
-    })
-  })
-
-  loaders.babel.include.push(join(root, 'src'))
 
   return {
     entry: join(root, 'src/index.js'),
@@ -33,13 +22,59 @@ module.exports = ({ name = '' }) => {
       ]
     },
     module: {
-      loaders: [
-        loaders.babel
+      rules: [
+        {
+          test: /\.jsx?$/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: [ 'es2015', 'stage-0', 'react' ],
+              plugins: [ 'transform-decorators-legacy' ],
+              cacheDirectory: true
+            }
+          },
+          include: [ root ],
+          exclude: [ /node_modules/ ]
+        }
       ]
     },
     plugins: [
-      plugins.UglifyJS
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false,
+        },
+        minimize: true,
+        output: {
+          comments: false,
+        },
+      })
     ],
-    externals: exts
+    externals: {
+      'react': {
+        root: 'React',
+        commonjs: 'react',
+        commonjs2: 'react',
+        amd: 'react'
+      },
+      'react-dom': {
+        root: 'ReactDOM',
+        commonjs: 'react-dom',
+        commonjs2: 'react-dom',
+        amd: 'react-dom'
+      },
+      'react-router': {
+        root: 'ReactRouter',
+        commonjs: 'react-router',
+        commonjs2: 'react-router',
+        amd: 'react-router'
+      },
+      'mobx': 'mobx',
+      'mobx-react': {
+        root: 'mobxReact',
+        commonjs: 'mobx-react',
+        commonjs2: 'mobx-react',
+        amd: 'mobx-react'
+      },
+    }
   }
 }

@@ -26,17 +26,6 @@ $ loop test
 $ loop cov
 ```
 
-### TypeScript
-
-Compile by Babel in default.
-
-Add `--compiler typescript` parameter to use typescript compiler.
-
-```shell
-$ loop dev --compiler typescript
-$ loop prod --compiler ts
-```
-
 ## Modules
 
 - Webpack
